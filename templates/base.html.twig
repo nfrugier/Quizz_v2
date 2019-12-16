@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/css-rpg-quizz.css') }}">
+	</head>
+    <body>
+	{% if app.user %}
+		{% include 'menu.html.twig' %}
+	{% endif %}
+    <br>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+
