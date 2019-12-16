@@ -2,6 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Answer;
+use App\Entity\Question;
+use App\Entity\Themes;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -28,6 +31,41 @@ class AppFixtures extends Fixture
 		$user->setScore('');
         $manager->persist($user);
 
+        $theme = new Themes();
+        $theme->setName("Test theme");
+        $manager->persist($theme);
+
+        $question1 = new Question();
+        $question1->setTheme($theme);
+        $question1->setSujet("est-ce vrai ? (spoiler : oui)");
+        $manager->persist($question1);
+
+        $question2 = new Question();
+        $question2->setSujet('est-ce faux ? (spoiler : oui)');
+        $question2->setTheme($theme);
+        $manager->persist($question2);
+
+        $answer1_1 = new Answer();
+        $answer1_1->setProposition('vrai');
+        $answer1_1->setQuestion($question1);
+        $answer1_1->setScore(10);
+        $manager->persist($answer1_1);
+        $answer1_2 = new Answer();
+        $answer1_2->setProposition('faux');
+        $answer1_2->setQuestion($question1);
+        $answer1_2->setScore(0);
+        $manager->persist($answer1_2);
+
+        $answer2_1 = new Answer();
+        $answer2_1->setProposition('vrai');
+        $answer2_1->setQuestion($question2);
+        $answer2_1->setScore(0);
+        $manager->persist($answer2_1);
+        $answer2_2 = new Answer();
+        $answer2_2->setProposition('faux');
+        $answer2_2->setQuestion($question2);
+        $answer2_2->setScore(10);
+        $manager->persist($answer2_2);
 
 		$manager->flush();
         
