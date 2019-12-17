@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ThemesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
@@ -12,15 +13,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
+
 class AccueilController extends AbstractController
 {
     /**
-     * @Route("/accueil", name="accueil")
+     * @Route("/", name="accueil", methods={"GET"})
      */
-    public function index()
+    public function index(ThemesRepository $themesRepository): Response
     {
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
+            'themes' => $themesRepository->findAll(),
         ]);
     }
 

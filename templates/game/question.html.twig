@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{theme.Name}} - {{ question.id }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h1>{{ question.Sujet }}</h1>
+
+            <div class="list-group ">
+                {% for answer in question.answers %}
+                    <a href="{{ path('answer', {'id_theme': theme.id,'id_question': question.id, 'score_question': answer.Score}) }}" class="list-group-item list-group-item-action list-group-item-primary">
+                        {{ answer.Proposition }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

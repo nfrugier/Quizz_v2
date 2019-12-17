@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{theme.Name}}{% endblock %}
+
+{% block body %}
+
+{% for question in theme.questions %}
+    <a href="{{ path('question', {'id_theme': theme.id,'id_question': question.id}) }}" class="btn btn-outline-primary">{{ question.Sujet }}</a>
+       {% endfor %}
+
+{% endblock %}

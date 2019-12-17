@@ -20,7 +20,6 @@ class ThemesController extends AbstractController
      */
     public function index(ThemesRepository $themesRepository): Response
     {
-        //dd($themesRepository->findAll());
         return $this->render('themes/index.html.twig', [
             'themes' => $themesRepository->findAll(),
         ]);
